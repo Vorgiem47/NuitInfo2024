@@ -1,0 +1,11 @@
+.footerDiv {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin: 2vh;
+
+    h1 {
+        font-size: 6vh;
+    }
+}
