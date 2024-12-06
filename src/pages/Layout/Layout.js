@@ -6,16 +6,11 @@ import Topbar from '../Topbar/Topbar';
 
 const Layout = () => {
   return (
-    <div className="layout-container">
-
-      <Topbar />
+    <div>
 
       <div className="content">
         <Outlet />
       </div>
-
-      <Footer />
-      
     </div>
   );
 };

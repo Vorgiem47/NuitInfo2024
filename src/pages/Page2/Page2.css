@@ -1,12 +1,56 @@
+/* Style général de la page */
+.title {
+    font-size: 3rem; /* Taille du texte */
+    font-weight: bold; /* Gras pour le titre */
+    color: #333; /* Couleur du texte */
+    text-align: center; /* Centrer horizontalement */
+    position: absolute; /* Utilisation de position absolue pour le centrer dans la page */
+    top: 10%; /* À 50% de la hauteur de la page */
+    left: 50%; /* À 50% de la largeur de la page */
+    transform: translate(-50%, -50%); /* Décale pour centrer parfaitement */
+  }
 .Page2div {
     display: flex;
+    justify-content: center;
     align-items: center;
-    flex-direction: column;
-    width: 100;
     height: 100vh;
-    margin: 2vh;
-
-    h1 {
-        font-size: 6vh;
+    background-color: #f0f0f0; /* Fond de la page */
+  }
+  .loading-bar-container {
+    width: 80%; /* Largeur de la barre de chargement */
+    height: 10px; /* Hauteur de la barre */
+    background-color: #ddd; /* Fond de la barre */
+    border-radius: 5px; /* Bordure arrondie */
+    overflow: hidden; /* Cache l'extérieur de la barre */
+  }
+  .loading-bar {
+    width: 0%; /* Initialement à 0% */
+    height: 100%;
+    background-color: #4caf50; /* Couleur de la barre de chargement */
+    animation: loading 1000s linear infinite; /* Animation de 5 secondes, boucle infinie */
+  }
+  .minimal-button {
+      position: fixed; /* Positionné en bas à droite */
+      bottom: 0px;
+      right: 0px;
+      background: none; /* Pas de fond */
+      border: none; /* Pas de bordure */
+      color: #d3d3d3; /* Texte en bleu clair */
+      font-size: 16px; /* Taille du texte */
+      font-weight: bold; /* Texte en gras pour plus de visibilité */
+      cursor: pointer; /* Curseur pointeur */
+      text-decoration: none; /* Pas de soulignement */
+      transition: color 0.3s ease; /* Effet de transition sur la couleur */
     }
-}
+  @keyframes loading {
+    0% {
+      width: 0%;
+    }
+    50% {
+      width: 100%;
+    }
+    100% {
+      width: 0%;
+    }
+  }
+  /* Classe pour un bouton minimaliste avec texte bleu clair */

@@ -1,12 +1,41 @@
 .Page3div {
     display: flex;
+    justify-content: center;
     align-items: center;
-    flex-direction: column;
-    width: 100;
     height: 100vh;
-    margin: 2vh;
+    background-color: #f0f0f0; /* Couleur de fond */
+    position: relative; /* Nécessaire pour positionner les éléments en absolu */
+}
 
-    h1 {
-        font-size: 6vh;
+.centered-text {
+    position: absolute; /* Pour placer au centre */
+    top: 20%; /* Ajuste la hauteur pour le positionner */
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centrage horizontal et vertical */
+    font-size: 2rem; /* Taille du texte */
+    color: #333; /* Couleur du texte */
+    font-weight: bold; /* Gras pour une meilleure lisibilité */
+    animation: growShrink 2s infinite; /* Animation d'agrandissement et rétrécissement */
+}
+
+/* Définition de l'animation */
+@keyframes growShrink {
+    0% {
+        font-size: 2rem; /* Taille initiale */
     }
+    50% {
+        font-size: 4rem; /* Taille maximale (double de la taille initiale) */
+    }
+    100% {
+        font-size: 2rem; /* Retour à la taille initiale */
+    }
+}
+
+.random-button {
+    position: absolute; /* Permet de déplacer dynamiquement le bouton */
+    left: 50%; /* Position initiale centrée horizontalement */
+    top: 50%; /* Position initiale centrée verticalement */
+    background-color: #4caf50; /* Couleur verte */
+    color: white;
+    cursor: pointer;
 }

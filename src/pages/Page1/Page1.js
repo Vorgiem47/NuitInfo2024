@@ -1,68 +1,144 @@
 import './Page1.css';
-import { gsap, Power3 } from 'gsap';
-import {useRef, useEffect} from 'react'
-import Header from '../Topbar/Topbar';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Page1 = () => {
+  // État pour gérer le nom d'utilisateur et le mot de passe
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [lastPassword, setLastPassword] = useState('');
+  const [error, setError] = useState('');
+  const [attempts, setAttempts] = useState(1);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [errorMessages, setErrorMessages] = useState([]);
 
-  const animRef1 = useRef(null);
-  const animRef2 = useRef(null);
-  const animRef3 = useRef(null);
-  const animRef4 = useRef(null);
-  const animRef5 = useRef(null);
+  const navigate = useNavigate();
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const currentPassword = password;
+    const previousPassword = lastPassword;
+    let newErrorMessages = [...errorMessages];
+    if (currentPassword !== previousPassword) {
+      if (attempts === 1) {
+        newErrorMessages.unshift('Too Short');
+        alert('Too Short');
+      }
+      if (attempts === 2) {
+        newErrorMessages.unshift('Missing Number');
+        alert('Missing Number');
+      }
+      if (attempts === 3) {
+        newErrorMessages.unshift('Missing Comma');
+        alert('Missing Comma');
+      }
+      if (attempts === 4) {
+        newErrorMessages.unshift('Missing point');
+        alert('Missing point');
+      }
+      if (attempts === 5) {
+        newErrorMessages.unshift('Missing Uppercase Letter');
+        alert('Missing Uppercase Letter');
+      }
+      if (attempts === 6) {
+        newErrorMessages.unshift('Missing Lowercase Letter');
+        alert('Missing Lowercase Letter');
+      }
+      if (attempts === 7) {
+        newErrorMessages.unshift('Missing Special Character');
+        alert('Missing Special Character');
+      }
+      if (attempts === 8) {
+        newErrorMessages.unshift('Too long');
+        alert('Too long');
+      }
+      if (attempts === 9) {
+        newErrorMessages.unshift('Weak Password');
+        alert('Weak Password');
+      }
+      if (attempts === 10) {
+        newErrorMessages.unshift('Password Reuse Detected');
+        alert('Password Reuse Detected');
+      }
+      if (attempts === 11) {
+        newErrorMessages.unshift('Common Password');
+        alert('Common Password');
+      }
+      if (attempts === 12) {
+        newErrorMessages.unshift('Too easy to guess');
+        alert('Too easy to guess');
+      }
+      if (attempts === 13) {
+        newErrorMessages.unshift('you suck');
+        alert('you suck');
+      }
+      if (attempts === 14) {
+        newErrorMessages.unshift('still wrong password');
+        alert('still wrong password');
+      }
+      if (attempts === 15) {
+        newErrorMessages.unshift('i feel bad for you');
+        alert('i feel bad for you');
+      }
+      if (attempts === 16) {
+        newErrorMessages.unshift('write a random password it will work');
+        alert('write a random password it will work');
+      }
+      if (attempts === 17) {
+        setIsLoggedIn(true);
+      }
+      setAttempts(prevAttempts => prevAttempts + 1);
+    }
+    setErrorMessages(newErrorMessages);
+    setLastPassword(currentPassword);
+  };
   useEffect(() => {
-    if (!animRef1.current || !animRef2.current || !animRef3.current || !animRef4.current || !animRef5.current)
-      return;
-
-    gsap.to(animRef1.current, {opacity: 1, duration: 1, ease: Power3.easeInOut});
-    gsap.to(animRef2.current, {opacity: 1, duration: 2, ease: Power3.easeInOut});
-    gsap.to(animRef3.current, {opacity: 1, duration: 3, ease: Power3.easeInOut});
-    gsap.to(animRef4.current, {opacity: 1, duration: 4, ease: Power3.easeInOut});
-    gsap.to(animRef5.current, {opacity: 1, duration: 4, ease: Power3.easeInOut});
-  }, []);
-
-  const images = [
-    {img: 'https://media.licdn.com/dms/image/v2/D4E03AQG2g4MMbM74Vg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1710182805058?e=1738800000&v=beta&t=RD7NkEhMgSsQGwpvbrkFuZFi2kwOQHkpqpDBN1bT5uY', name: "Auguste Mulley"},
-    {img: 'https://media.licdn.com/dms/image/v2/D4E03AQE3e3k3ruAyMg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1705681446920?e=1738800000&v=beta&t=0Y1wUgghkYcpw7Upm5LgbvcYchqBW1J9XtEkqsISpDk', name: "Virgile Mulley"},
-    {img: 'https://media.licdn.com/dms/image/v2/C4E03AQHhPanir0nGuw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1663932052675?e=1738800000&v=beta&t=k6-gwqSJnkE8j2mAQYTXCyABeXULadLgj4LPsrkNuhw', name: "Damien Collet-Lamoureux"},
-    {img: 'https://media.licdn.com/dms/image/v2/D4E03AQFk4yinajLR0g/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1695821196327?e=1738800000&v=beta&t=ots709pNPg_EPr20MGUs_SKSRQgwR3Wn69MVmFyPWfo', name: "Noé Cornu"},
-    {img: 'https://media.licdn.com/dms/image/v2/D4D03AQHUED21uiFUtQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1678284122629?e=1738800000&v=beta&t=U22W-6pl_z3lk28f1PAjMRaZmBBszPWvhMZkL8SaZFo', name: "Fady Assem"},
-    {img: 'https://media.licdn.com/dms/image/v2/D4E35AQEN4nzH_18O3g/profile-framedphoto-shrink_200_200/profile-framedphoto-shrink_200_200/0/1732922632749?e=1733911200&v=beta&t=LnbXz6k7tf7oAM9KRBeENHPJCNle5pSs8QQd78AS93U', name: "Eliott Duhau"},
-  ];
-
-  const defis = [
-    {name: "Se battre à mort", company: "UFC"},
-    {name: "Manger du couscous", company: "Dindon industry"},
-    {name: "Devenir chauve", company: "Bold"},
-    {name: "Soulever des trucs lourds", company: "Tg"},
-  ];
+    if (isLoggedIn) {
+      navigate('/page2');
+    }
+  }, [isLoggedIn]);
 
   return (
-    <div className="Page1div">
-      <Header />
-      <img ref={animRef1} src='https://www.nuitdelinfo.com/materiel_communication/2024/tshirt/N2I2024_visuels-simple.png' className='logoNuitInfo' alt="Logo Nuit de l'info" />
-      <h1 ref={animRef2}>Les défis qu'on a choisis :</h1>
-      <div ref={animRef3} className='allDefiDiv'>
-        <ul>
-          {defis.map((defi, index) => (
-            <li key={index} className="defiItem">
-              <strong>{defi.name}</strong> - {defi.company}
-            </li>
+    <div className="page1-container">
+      <h1>Button Game</h1>
+      <h2>log in</h2>
+
+      <form onSubmit={handleSubmit} className="login-form">
+        <div className="form-group">
+          <label htmlFor="username">username:</label>
+          <input
+            type="text"
+            id="username"
+            className="shake"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="password">password:</label>
+          <input
+            type="password"
+            id="password"
+            className="shake"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="error-messages">
+          {errorMessages.map((error, index) => (
+            <p key={index} style={{ color: 'red' }}>{error}</p>  // Affiche chaque message d'erreur
           ))}
-        </ul>
-      </div>
-      <h1 ref={animRef4}>Notre équipe</h1>
-      <div ref={animRef5} className='allPictureDiv'>
-        {images.map((image, index) => (
-          <div key={index} className="pictureDiv">
-            <img className='picture' src={image.img} alt={`${index + 1}`} />
-            <h2>{ image.name }</h2>
-          </div>
-        ))}
-      </div>
+        </div>
+
+        <button type="submit">log in</button>
+      </form>
     </div>
   );
 };
 
 export default Page1;
+
